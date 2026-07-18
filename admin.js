@@ -1,4 +1,9 @@
-
+import {
+doc,
+setDoc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 // Firebase imports
 
 import { auth, db } from "./firebase.js";
@@ -232,6 +237,46 @@ list.appendChild(div);
 
 });
 
+
+
+}
+// Save restaurant information
+
+const saveInfo =
+document.getElementById("saveInfo");
+
+
+if(saveInfo){
+
+
+saveInfo.addEventListener("click",async()=>{
+
+
+await setDoc(
+doc(db,"website","information"),
+{
+
+about:
+document.getElementById("aboutText").value,
+
+
+phone:
+document.getElementById("phoneNumber").value,
+
+
+hours:
+document.getElementById("openingHours").value
+
+
+}
+);
+
+
+
+alert("Information updated successfully");
+
+
+});
 
 
 }
