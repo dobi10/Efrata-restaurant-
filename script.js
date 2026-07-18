@@ -1,103 +1,108 @@
 
-// Mobile menu preparation
+// Firebase imports
 
-const navLinks = document.querySelectorAll("nav a");
+import { db } from "./firebase.js";
 
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    });
-
-});
-
-
-// Scroll animation
-
-window.addEventListener("scroll", () => {
-
-    const sections = document.querySelectorAll("section");
-
-    sections.forEach(section => {
-
-        const position = section.getBoundingClientRect().top;
-
-        const screenHeight = window.innerHeight;
-
-
-        if(position < screenHeight - 100){
-
-            section.style.opacity = "1";
-            section.style.transform = "translateY(0)";
-
-        }
-
-    });
-
-});
+import {
+collection,
+addDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-// Reservation message
+// Reservation form
 
-function reservationSuccess(){
+const reservationForm =
+document.getElementById("reservationForm");
 
-    alert(
-        "Thank you for choosing Efrata Restaurant. Your reservation has been received!"
-    );
+
+if(reservationForm){
+
+
+reservationForm.addEventListener("submit", async(e)=>{
+
+
+e.preventDefault();
+
+
+
+const reservation = {
+
+name:
+document.getElementById("name").value,
+
+
+phone:
+document.getElementById("phone").value,
+
+
+email:
+document.getElementById("email").value,
+
+
+guests:
+document.getElementById("guests").value,
+
+
+date:
+document.getElementById("date").value,
+
+
+time:
+document.getElementById("time").value,
+
+
+message:
+document.getElementById("message").value,
+
+
+createdAt:
+serverTimestamp()
+
+};
+
+
+
+
+try{
+
+
+await addDoc(
+collection(db,"reservations"),
+reservation
+);
+
+
+
+alert(
+"Reservation submitted successfully!"
+);
+
+
+
+reservationForm.reset();
+
+
+
+}
+
+catch(error){
+
+
+console.log(error);
+
+
+alert(
+"Something went wrong. Please try again."
+);
+
 
 }
 
 
 
-// Gallery image viewer
-
-const galleryImages = document.querySelectorAll(".gallery img");
-
-
-galleryImages.forEach(image => {
-
-    image.addEventListener("click",()=>{
-
-        let viewer = document.createElement("div");
-
-        viewer.className="image-viewer";
-
-        viewer.innerHTML=`
-        <img src="${image.src}">
-        `;
-
-
-        document.body.appendChild(viewer);
-
-
-        viewer.onclick=()=>{
-
-            viewer.remove();
-
-        };
-
-    });
-
 });
 
-
-
-// Current year in footer
-
-const year = new Date().getFullYear();
-
-const footerText = document.querySelector("footer p");
-
-
-if(footerText){
-
-    footerText.innerHTML =
-    `© ${year} Efrata Restaurant • Bale Robe • All Rights Reserved`;
 
 }
