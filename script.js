@@ -106,3 +106,50 @@ alert(
 
 
 }
+import { db } from "./firebase.js";
+
+import {
+doc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+// Load restaurant information
+
+async function loadWebsiteInfo(){
+
+const about =
+document.getElementById("aboutContent");
+
+
+if(about){
+
+
+const info =
+await getDoc(
+doc(db,"website","information")
+);
+
+
+
+if(info.exists()){
+
+
+const data = info.data();
+
+
+about.innerHTML = data.about;
+
+
+}
+
+
+}
+
+
+}
+
+
+
+loadWebsiteInfo();
