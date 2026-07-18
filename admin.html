@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | Efrata Restaurant</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-utensils"></i>
+
+Efrata Admin
+
+</div>
+
+
+<nav>
+
+<a href="index.html">Website</a>
+
+<a href="reservation.html">Reservations</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+
+
+<section>
+
+
+<h2>Admin Login</h2>
+
+
+
+<div class="form-container">
+
+
+
+<form id="loginForm">
+
+
+<input 
+type="email"
+id="adminEmail"
+placeholder="Admin Email"
+required>
+
+
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Password"
+required>
+
+
+
+<button class="btn" type="submit">
+
+Login
+
+</button>
+
+
+</form>
+
+
+<p id="loginMessage"></p>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section id="dashboard" style="display:none;">
+
+
+<h2>Admin Dashboard</h2>
+
+
+
+
+<div class="admin-container">
+
+
+
+
+
+<div class="admin-card">
+
+
+<h3>
+<i class="fas fa-calendar"></i>
+Reservations
+</h3>
+
+
+<div id="reservationList">
+
+<p>
+Loading reservations...
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="admin-card">
+
+
+<h3>
+<i class="fas fa-images"></i>
+Gallery Management
+</h3>
+
+
+<input 
+type="file"
+id="galleryUpload">
+
+
+
+<button class="btn">
+
+Upload Image
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="admin-card">
+
+
+<h3>
+<i class="fas fa-info-circle"></i>
+Website Information
+</h3>
+
+
+<textarea
+placeholder="Update About Us information">
+</textarea>
+
+
+<button class="btn">
+
+Save Changes
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+
+<p>
+© 2026 Efrata Restaurant Admin Panel
+</p>
+
+
+</footer>
+
+
+
+
+
+<script src="admin.js"></script>
+
+
+</body>
+
+  </html>
