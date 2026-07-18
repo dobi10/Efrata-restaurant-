@@ -1,48 +1,37 @@
-// Firebase SDK imports
+// Firebase imports
 
-import { initializeApp } from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import { 
 getAuth 
-} from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import { 
 getFirestore 
-} from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import { 
 getStorage 
-} from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
-
-
-// Replace this with your Firebase project settings
+// Your Firebase configuration
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
+apiKey: "AIzaSyDIzOEeU2Ig4_vIU15uPQ52fY-uuX8-sFM",
 
-authDomain: "YOUR_PROJECT.firebaseapp.com",
+authDomain: "efrata-restaurant.firebaseapp.com",
 
-projectId: "YOUR_PROJECT_ID",
+projectId: "efrata-restaurant",
 
-storageBucket: "YOUR_PROJECT.appspot.com",
+storageBucket: "efrata-restaurant.firebasestorage.app",
 
-messagingSenderId: "YOUR_SENDER_ID",
+messagingSenderId: "846901802455",
 
-appId: "YOUR_APP_ID"
+appId: "1:846901802455:web:bd3dac687c96fedbdd8792"
 
 };
-
-
 
 
 // Initialize Firebase
@@ -50,6 +39,7 @@ appId: "YOUR_APP_ID"
 const app = initializeApp(firebaseConfig);
 
 
+// Export Firebase services
 
 export const auth = getAuth(app);
 
