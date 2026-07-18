@@ -32,15 +32,10 @@ Efrata Restaurant
 <nav>
 
 <a href="index.html">Home</a>
-
 <a href="about.html">About</a>
-
 <a href="services.html">Services</a>
-
 <a href="gallery.html">Gallery</a>
-
 <a href="reservation.html">Reservation</a>
-
 <a href="admin.html">Admin</a>
 
 </nav>
@@ -49,12 +44,16 @@ Efrata Restaurant
 
 
 
+
 <section class="hero"
-style="height:60vh;background:
+style="
+height:60vh;
+background:
 linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
 url('images/about.jpg');
 background-size:cover;
-background-position:center;">
+background-position:center;
+">
 
 
 <div class="hero-content">
@@ -62,7 +61,7 @@ background-position:center;">
 <h1>About Efrata Restaurant</h1>
 
 <p>
-Serving delicious meals and creating memorable experiences in Bale Robe.
+Discover our story, passion, and commitment to great food.
 </p>
 
 </div>
@@ -73,17 +72,17 @@ Serving delicious meals and creating memorable experiences in Bale Robe.
 
 
 
+
+
 <section class="about">
 
 
 <h2>Who We Are</h2>
 
 
-<p>
+<p id="aboutContent">
 
-Efrata Restaurant is a modern dining destination located in Bale Robe, Ethiopia.
-We provide high-quality food, a comfortable environment, and excellent customer
-service for families, friends, and visitors.
+Loading information...
 
 </p>
 
@@ -93,10 +92,14 @@ service for families, friends, and visitors.
 
 
 
+
+
+
 <section>
 
 
-<h2>Our Mission</h2>
+<h2>Why Choose Us</h2>
+
 
 
 <div class="features">
@@ -109,7 +112,7 @@ service for families, friends, and visitors.
 <h3>Quality Food</h3>
 
 <p>
-We prepare every meal with fresh ingredients and great care.
+Fresh ingredients and carefully prepared meals.
 </p>
 
 </div>
@@ -121,10 +124,10 @@ We prepare every meal with fresh ingredients and great care.
 
 <i class="fas fa-users"></i>
 
-<h3>Customer Satisfaction</h3>
+<h3>Friendly Service</h3>
 
 <p>
-Our guests always come first. We focus on comfort and service.
+We welcome every guest with excellent hospitality.
 </p>
 
 </div>
@@ -136,19 +139,22 @@ Our guests always come first. We focus on comfort and service.
 
 <i class="fas fa-star"></i>
 
-<h3>Best Experience</h3>
+<h3>Great Experience</h3>
 
 <p>
-We create a welcoming place for unforgettable moments.
+A comfortable place for families, friends and events.
 </p>
 
 </div>
+
 
 
 </div>
 
 
 </section>
+
+
 
 
 
@@ -168,8 +174,21 @@ Bale Robe, Ethiopia
 
 <p>
 <i class="fas fa-phone"></i>
+<span id="phoneDisplay">
 0900000001
+</span>
 </p>
+
+
+<p>
+<i class="fas fa-clock"></i>
+
+<span id="hoursDisplay">
+Open Every Day
+</span>
+
+</p>
+
 
 
 <a href="reservation.html" class="btn">
@@ -178,6 +197,8 @@ Book A Table
 
 
 </section>
+
+
 
 
 
@@ -192,9 +213,67 @@ Book A Table
 </footer>
 
 
-<script src="script.js"></script>
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+
+import {
+doc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+async function loadInformation(){
+
+
+const info =
+await getDoc(
+doc(db,"website","information")
+);
+
+
+
+if(info.exists()){
+
+
+const data = info.data();
+
+
+
+document.getElementById("aboutContent").innerHTML =
+data.about || "Welcome to Efrata Restaurant.";
+
+
+
+document.getElementById("phoneDisplay").innerHTML =
+data.phone || "0900000001";
+
+
+
+document.getElementById("hoursDisplay").innerHTML =
+data.hours || "Open Every Day";
+
+
+
+}
+
+
+
+}
+
+
+
+loadInformation();
+
+
+</script>
 
 
 </body>
 
-  </html>
+</html>
