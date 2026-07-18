@@ -1,22 +1,49 @@
 
-// Firebase will be connected here
-// Replace the configuration in the next step
+// Firebase imports
+
+import { auth, db } from "./firebase.js";
 
 
-// Admin login
+import {
+signInWithEmailAndPassword,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const loginForm = document.getElementById("loginForm");
+
+import {
+collection,
+getDocs,
+deleteDoc,
+doc,
+orderBy,
+query
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+
+// Login
+
+const loginForm =
+document.getElementById("loginForm");
+
 
 
 if(loginForm){
 
-loginForm.addEventListener("submit",(e)=>{
+
+loginForm.addEventListener("submit", async(e)=>{
+
 
 e.preventDefault();
 
 
+
 const email =
 document.getElementById("adminEmail").value;
+
 
 
 const password =
@@ -24,39 +51,32 @@ document.getElementById("adminPassword").value;
 
 
 
-/*
-Temporary login check
-
-Later this will be replaced with
-Firebase Authentication
-*/
+try{
 
 
-if(email==="admin@efrata.com" && password==="admin123"){
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
 
 
 document.getElementById("loginMessage").innerHTML =
 "Login successful";
 
 
-document.getElementById("dashboard").style.display="block";
-
-
-document.querySelector("section").style.display="none";
-
-
-
-loadReservations();
-
-
-
 }
 
-else{
+
+catch(error){
 
 
 document.getElementById("loginMessage").innerHTML =
-"Wrong email or password";
+"Incorrect email or password";
+
+
+console.log(error);
 
 
 }
@@ -72,9 +92,47 @@ document.getElementById("loginMessage").innerHTML =
 
 
 
-// Reservation loading
+// Check admin login status
 
-function loadReservations(){
+onAuthStateChanged(auth,(user)=>{
+
+
+if(user){
+
+
+document.getElementById("dashboard").style.display="block";
+
+
+const loginSection =
+document.querySelector("#loginForm");
+
+
+if(loginSection){
+
+loginSection.style.display="none";
+
+}
+
+
+
+loadReservations();
+
+
+}
+
+
+});
+
+
+
+
+
+
+
+// Load reservations
+
+async function loadReservations(){
+
 
 
 const list =
@@ -82,54 +140,98 @@ document.getElementById("reservationList");
 
 
 
-if(list){
+list.innerHTML="Loading...";
 
 
-list.innerHTML=`
 
-<div class="admin-card">
-
-<h3>Example Reservation</h3>
-
-<p>Name: Customer Name</p>
-
-<p>Phone: 0900000001</p>
-
-<p>Date: Available after Firebase connection</p>
+const q =
+query(
+collection(db,"reservations"),
+orderBy("createdAt","desc")
+);
 
 
-</div>
+
+const snapshot =
+await getDocs(q);
+
+
+
+list.innerHTML="";
+
+
+
+snapshot.forEach((item)=>{
+
+
+const data=item.data();
+
+
+
+const div=document.createElement("div");
+
+
+div.className="admin-card";
+
+
+
+div.innerHTML=`
+
+<h3>${data.name}</h3>
+
+<p>
+Phone: ${data.phone}
+</p>
+
+<p>
+Guests: ${data.guests}
+</p>
+
+<p>
+Date: ${data.date}
+</p>
+
+<p>
+Time: ${data.time}
+</p>
+
+<p>
+Message: ${data.message}
+</p>
+
+
+<button class="btn delete-btn">
+Delete
+</button>
 
 `;
 
 
-}
 
 
-
-}
-
-
+div.querySelector(".delete-btn")
+.onclick=async()=>{
 
 
-// Gallery upload preparation
-
-const upload =
-document.getElementById("galleryUpload");
-
-
-if(upload){
-
-
-upload.addEventListener("change",()=>{
-
-
-alert(
-"Image selected. Firebase Storage will be connected next."
+await deleteDoc(
+doc(db,"reservations",item.id)
 );
+
+
+
+div.remove();
+
+
+};
+
+
+
+list.appendChild(div);
+
 
 
 });
 
 
-  }
+
+}
