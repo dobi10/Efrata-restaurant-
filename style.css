@@ -1,0 +1,588 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fafafa;
+    color:#333;
+}
+
+/* Header */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.85);
+    z-index:1000;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    color:#d4af37;
+    font-size:25px;
+    font-weight:700;
+}
+
+.logo i{
+    margin-right:8px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:15px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#d4af37;
+}
+
+
+/* Hero Section */
+
+.hero{
+
+    height:100vh;
+    background:
+    linear-gradient(
+    rgba(0,0,0,.6),
+    rgba(0,0,0,.6)
+    ),
+    url("images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    position:relative;
+
+}
+
+
+.hero-content{
+
+    color:white;
+    max-width:900px;
+    animation:fadeUp 1.5s ease;
+
+}
+
+
+.hero h1{
+
+    font-size:65px;
+    font-weight:700;
+    margin-bottom:20px;
+
+}
+
+
+.hero p{
+
+    font-size:22px;
+    line-height:1.6;
+    margin-bottom:35px;
+
+}
+
+
+/* Buttons */
+
+.btn,
+.btn2{
+
+    display:inline-block;
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    margin:10px;
+    font-weight:600;
+    transition:.4s;
+
+}
+
+
+.btn{
+
+    background:#d4af37;
+    color:white;
+
+}
+
+
+.btn2{
+
+    background:white;
+    color:#111;
+
+}
+
+
+.btn:hover,
+.btn2:hover{
+
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+
+
+/* Sections */
+
+section{
+
+    padding:90px 8%;
+
+}
+
+
+h2{
+
+    text-align:center;
+    color:#b8860b;
+    font-size:40px;
+    margin-bottom:50px;
+
+}
+
+
+/* Features */
+
+.features{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+
+}
+
+
+.feature{
+
+    background:white;
+    padding:35px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.4s;
+
+}
+
+
+.feature:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+.feature i{
+
+    font-size:45px;
+    color:#d4af37;
+    margin-bottom:20px;
+
+}
+
+
+.feature h3{
+
+    margin-bottom:15px;
+
+}
+
+
+.feature p{
+
+    color:#666;
+
+}
+/* Special Dishes */
+
+.cards{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+
+}
+
+
+.card{
+
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    transition:.4s;
+
+}
+
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+.card img{
+
+    width:100%;
+    height:250px;
+    object-fit:cover;
+
+}
+
+
+.card h3{
+
+    padding:20px;
+    font-size:22px;
+    text-align:center;
+    color:#333;
+
+}
+
+
+
+/* Testimonials */
+
+.testimonials{
+
+    background:#111;
+    color:white;
+    text-align:center;
+
+}
+
+
+.testimonials h2{
+
+    color:#d4af37;
+
+}
+
+
+.review{
+
+    max-width:700px;
+    margin:auto;
+    background:#222;
+    padding:35px;
+    border-radius:20px;
+
+}
+
+
+.review p{
+
+    font-size:20px;
+    line-height:1.8;
+
+}
+
+
+.review h4{
+
+    margin-top:20px;
+    color:#d4af37;
+
+}
+
+
+
+/* Contact */
+
+.contact-home{
+
+    text-align:center;
+
+}
+
+
+.contact-home p{
+
+    font-size:20px;
+    margin:15px;
+
+}
+
+
+.contact-home i{
+
+    color:#d4af37;
+    margin-right:10px;
+
+}
+
+
+
+/* Footer */
+
+footer{
+
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:30px;
+
+}
+
+
+footer p{
+
+    font-size:15px;
+
+}
+
+
+
+/* Gallery Page */
+
+.gallery{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+
+}
+
+
+.gallery img{
+
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.4s;
+
+}
+
+
+.gallery img:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* Reservation Form */
+
+.form-container{
+
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+}
+
+
+.form-container input,
+.form-container textarea,
+.form-container select{
+
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+
+}
+
+
+.form-container button{
+
+    width:100%;
+    border:none;
+    cursor:pointer;
+    font-size:17px;
+
+}
+
+
+
+/* Services */
+
+.services-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+
+}
+
+
+.service-box{
+
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.3s;
+
+}
+
+
+.service-box:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+.service-box i{
+
+    color:#d4af37;
+    font-size:40px;
+    margin-bottom:15px;
+
+}
+
+
+
+/* Admin Dashboard */
+
+.admin-container{
+
+    max-width:1000px;
+    margin:auto;
+
+}
+
+
+.admin-card{
+
+    background:white;
+    padding:25px;
+    margin:20px 0;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+
+
+/* Animations */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* Mobile Responsive */
+
+@media(max-width:900px){
+
+header{
+
+    flex-direction:column;
+    padding:15px;
+
+}
+
+
+nav{
+
+    margin-top:15px;
+
+}
+
+
+nav a{
+
+    margin:8px;
+    display:inline-block;
+
+}
+
+
+.hero h1{
+
+    font-size:42px;
+
+}
+
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+
+h2{
+
+    font-size:32px;
+
+}
+
+}
+
+
+
+@media(max-width:500px){
+
+.hero h1{
+
+    font-size:34px;
+
+}
+
+
+.btn,
+.btn2{
+
+    padding:12px 25px;
+
+}
+
+
+.logo{
+
+    font-size:20px;
+
+}
+
+}
